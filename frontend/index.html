@@ -1,0 +1,44 @@
+<!--******************************************************************************
+ *  Execution       : default node          : cmd> nodemon index.html
+ *                      
+ * 
+ *  Purpose         : Room chatting with two peoples
+ * 
+ *  @description    : Connected all the path 
+ * 
+ *  @file           : ChatApp application
+ *  @overview       : Connect and chat with two peoples
+ *  @author         : Bhupendra Singh <bhupendrasingh.ec18@gmail.com>
+ *  @version        : 1.0
+ *  @since          : 19-mar-2019
+ *
+ *****************************************************************************-->
+<!--
+required files
+ -->
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <script src="./templet/LoginForm.html"></script>
+    <script src="./templet/SignUp.html"></script>
+    <script src="./templet/ForgotPassword.html"></script>
+    <script src="./templet/ResetPassword.html"></script>
+    <script src="./controller/Login_controller.js"></script>
+    <script src="./controller/SignUp_controller.js"></script>
+    <script src="./controller/ForgotPassword_controller.js"></script>
+    <script src="./controller/ResetPassword_controller.js"></script>
+    <script src="./services/serviceLogin.js"></script>
+    <script src="./services/ServiceSignUp.js"></script>
+    <script src="./services/serviceForgotPassword.js"></script>
+    <script src="./services/serviceResetPassword.js"></script>
+</head>
+
+<body ng-app="chatapp">
+    <ui-view>
+
+    </ui-view>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!--******************************************************************************
+ *  Execution       : default node          
+ *                      
+ * 
+ *  Purpose         : Room chatting with two peoples
+ * 
+ *  @description    : Create a login form 
+ * 
+ *  @file           : ChatApp application
+ *  @overview       : Connect and chat with two peoples
+ *  @author         : Bhupendra Singh <bhupendrasingh.ec18@gmail.com>
+ *  @version        : 1.0
+ *  @since          : 19-mar-2019
+ *
+ *****************************************************************************-->
+
+ <title>Chat App login Page</title> 
+ 
+ <!--
+     css part
+ -->
+ <style>
+    form {
+        background-color: rgb(135, 206, 250);
+        margin-left: auto;
+        margin-top: 75px;
+        margin-bottom: auto;
+        margin-right: auto;
+        width: 600px;
+        padding: 22px
+    }
+
+    h1 {
+        margin-left: 234px;
+        color: black;
+    }
+
+    button {
+        width: 500px;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 25px;
+        background-color: yellowgreen;
+        color: floralwhite;
+        display: block;
+    }
+
+    input {
+        width: 500px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #ddd;
+        border: 1px solid #f1f1f1;
+        padding: 10px;
+        display: block;
+    }
+
+    label {
+        width: 100px;
+        margin-left: 40px;
+        margin-right: auto;
+        display: block;
+        padding: 10px
+    }
+
+    a:link {
+        margin-left: 50px;
+        margin-right: 222px;
+        text-decoration: none;
+        display: inline;
+        font-size: 17px;
+
+    }
+</style> 
+
+ <body background="../assets/1.jpg"> 
+     <form>
+        <div ng-controller="controlLogin"></div>
+
+        <h1>LOG IN </h1>
+
+        <!--
+            input for login form
+        -->
+        <div class="userinput">
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" name="email" ng-model="email" required>
+
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" ng-model="password" minlength="8"
+                title="Must contain  at least 8 or more characters" required><br>
+            <button type="submit" ng-click="login()">Login</button>
+
+        </div>
+        <div>
+            <p><a href="#!/signup" ng-click="go()">Create Account</a>
+                <span><a href="#!/forgotPassword" ng-click="go2()">Forgot Password?</a></p></span>
+        </div>
+
+    </form> 
+ </body> 

@@ -1,0 +1,111 @@
+<!--******************************************************************************
+ *  Execution       : default node          
+ *                      
+ * 
+ *  Purpose         : Room chatting with two peoples
+ * 
+ *  @description    : Create a signup form 
+ * 
+ *  @file           : ChatApp application
+ *  @overview       : Connect and chat with two peoples
+ *  @author         : Bhupendra Singh <bhupendrasingh.ec18@gmail.com>
+ *  @version        : 1.0
+ *  @since          : 19-mar-2019
+ *
+ *****************************************************************************-->
+
+<title>Chat App Sign Up</title>
+
+<!--
+    css part
+-->
+<style>
+    form {
+
+        background-color: burlywood;
+        margin-left: auto;
+        margin-top: 28px;
+        margin-bottom: auto;
+        margin-right: auto;
+        width: 450px;
+        padding: 30px
+    }
+
+    h1 {
+        margin-left: 49px;
+        color: black;
+        font-size: 28px;
+
+    }
+
+
+    button {
+        width: 200px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: 20px;
+        border: none;
+        background-color: green;
+        color: floralwhite;
+        display: block;
+    }
+
+    input {
+        width: 450px;
+        height: 30px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        background-color: #ddd;
+        border: 1px solid #f1f1f1;
+        padding: 5px;
+        display: block;
+    }
+
+
+    a:link {
+        margin-left: 8px;
+        margin-right: 1px;
+        text-decoration: none;
+        font-size: 17px;
+
+    }
+
+    p {
+        margin-left: 115px;
+
+    }
+</style>
+
+<body background="../assets/3.jpg" ng-controller="controlSignup">
+    <form>
+
+        <h1>CREATE YOUR ACCOUNT</h1>
+
+        <!--
+            input for signup form
+        -->
+        <div class="userinput">
+            <br>
+            <label for="firstname"><b>Firstname</b></label>
+            <input type="text" placeholder="Enter your first name" name="firstname" ng-model="firstname" required>
+            <label for="lastname"><b>Lastname</b></label>
+            <input type="text" placeholder="Enter your last name" name="lastname" ng-model="lastname" required>
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Username" name="email" ng-model="email" required>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" ng-model="password" id="password"
+                title="at least 8 or more characters" required>
+
+
+            <button type="submit" ng-click="signup()" ng-disabled="myForm.$invalid">Sign Up</button>
+        </div>
+        <div>
+            <p>Already have an account?<a href="#!/login" ng-click="go()">Log in</a></p>
+        </div>
+
+    </form>
+</body>
