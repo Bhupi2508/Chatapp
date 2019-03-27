@@ -23,23 +23,15 @@ var schema = mongoose.Schema;
 define a schema for chating users
 */
 var chatSchema = new schema({
-    senderId: {
+    "senderId": {
         type: String
     },
 
-    senderName: {
+    "receiverId": {
         type: String
     },
 
-    receiverId: {
-        type: String
-    },
-
-    receiverName: {
-        type: String
-    },
-
-    messageId: {
+    "message": {
         type: String
     }
 },
@@ -55,16 +47,16 @@ function chatModel() { }
 var chat = mongoose.model('chatInfo', chatSchema)
 try {
     chatModel.prototype.addMessage = (chatData, callback) => {
-        console.log('Data', chatData.senderId)
+        console.log('In model => Data : ', chatData.senderId)
+       // console.log("chatdata : ", chatData);
+        
 
         const newMessage = new chat({
-            senderId: chatData.senderId,
-            senderName: chatData.senderName,
-            receiverId: chatData.receiverId,
-            receiverName: chatData.receiverName,
-            messageId: chatData.messageId
+            "senderId": chatData.senderId,
+            "receiverId": chatData.receiverId,
+            "message": chatData.message
         });
-        console.log("create a message ", newMessage);
+        console.log("create a ID ", newMessage);
         newMessage.save((err, result) => {
             if (err) {
                 console.log('!error, Data not filled', err);
@@ -83,7 +75,7 @@ try {
 user message 
 */
 try {
-    chatModel.prototype.UserMsg = (req, callback) => {
+    chatModel.prototype.userMsg = (callback) => {
         chat.find({}, (err, data) => {
             if (err) {
                 callback(err)

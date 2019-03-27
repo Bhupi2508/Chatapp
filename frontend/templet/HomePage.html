@@ -19,6 +19,8 @@ required files
 <script src="../angular.js"></script>
 <script src="../angular-route.min.js"></script>
 <script src="../app.js"></script>
+<link rel="stylesheet" href="../css/tri.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
 <!--
             css part
@@ -51,6 +53,15 @@ required files
     h1 {
         margin-left: 350px;
         font-size: 3em;
+    }
+
+    h2 {
+        margin-left: 135px;
+    }
+
+    input {
+        width: 678;
+        height: 30px;
     }
 
     img {
@@ -90,24 +101,11 @@ required files
         margin-bottom: 90px;
     }
 
-    .rightblock {
-        height: 413px;
-        width: 784px;
-        border: solid black;
-        margin-left: 454px;
-        margin-bottom: -3px;
-    }
-
     .send {
         height: 30px;
         width: 678px;
         border: solid black;
         margin-left: 454px;
-    }
-
-    input {
-        width: 678;
-        height: 30px;
     }
 
     .button {
@@ -117,8 +115,12 @@ required files
         padding: 10px;
     }
 
-    h2 {
-        margin-left: 135px;
+    .rightblock {
+        height: 413px;
+        width: 784px;
+        border: solid black;
+        margin-left: 454px;
+        margin-bottom: -3px;
     }
 </style>
 
@@ -126,16 +128,21 @@ required files
     Homepage connected from another form
 -->
 
-<body>
+<body ng-controller="chatController">
     <div class="root">
         <ul>
             <li><b><a href="HomePage.html">Home</a></li>
             <!-- <li><b><a href="Profile.html">Profile</a></li> -->
-            <li><b><a href="#!/login">Logout</a></li>
+            <li><b><a href="#!/login" ng-click=go()>Logout</a></li>
         </ul>
     </div>
     <div class="leftblock">
-        <h2>Users List</h2>
+        <section>
+            <h2>Users List</h2>
+            <p ng-repeat="x in allUser" ng-click="person(x)" ng-show="currUserName!=x.firstname">
+                    {{x.firstname}}</p>
+                    <a class="">{{getAllUsers}}</a>
+        </section>
     </div>
 
     <div class="mainblock">
@@ -143,10 +150,24 @@ required files
         <div>
             <h1>Welcome to ChatApp <img src="../assets/img chatapp.png"></h1>
             <div class="rightblock">
+                <section>
+                    <form>
+                        <div class="chatLogs" ng-repeat="chat in allUserArr">
+                            <div class="chat friend" ng-show="currUser != chat.senderUserId">
+                                <p class="chatMsg"> {{chat.message}}</p>
+                            </div>
+                            <div class="chat self" ng-show="currUser == chat.senderUserId">
+
+                                <p class="chatMsg"> {{chat.message}}</p>
+                            </div>
+                        </div>
+                </section>
             </div>
             <div class="send">
                 <form action="">
-                    <input id="message" ng-model="message" autocomplete="off"><button ng-click="">Send</button></input>
+                    <input id="message" ng-model="message" autocomplete="off">
+                    <button ng-click=sendmessage()>Send</button>
+                    </input>
             </div>
         </div>
     </div>

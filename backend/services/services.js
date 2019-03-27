@@ -84,22 +84,6 @@ exports.updatePassword = (req, callback) => {
 }
 
 /*
-for new user
-*/
-module.exports = {
-    save () {
-        const newUser = new user({
-
-            "firstname": body.firstname,
-            "lastname": body.lastname,
-            "email": body.email,
-            "password": hash(body.password)
-        });
-        return newUser;
-    }
-}
-
-/*
 for retrive the data
 */
 exports.getAllUser = (req, callback) => {

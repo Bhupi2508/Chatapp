@@ -21,43 +21,43 @@ var chatService = require('../services/chatServices');
 /*
 check the req and send to callback again
 */
-try {
-    module.exports.message = (req, callback) => {
-        console.log('req', req)
+//try {
+    module.exports.addMessage = (req, callback) => {
+        //console.log('req', req)
         /*
         add messages 
         */
         chatService.addMessage(req, (err, data) => {
             if (err) {
                 console.log("error in controller");
-                callback(err);
+               return callback(err);
             } else {
-                console.log("controller is working fine");
-                callback(null, data);
+                console.log("come back to controller => controller is working fine");
+               return callback(null, data);
             }
         })
     }
-} catch (err) {
-    console.log('error in sending messge')
-}
+//} catch (err) {
+   // console.log('error in sending messge')
+//}
 
-try {
+// try {
 
-    module.exports.userMessage = (req, res) => {
-        console.log(" value ")
-        chatService.userMessage(req, (err, data) => {
-            var responce = {};
-            if (err) {
-                data.responce = false;
-                data.responce = err;
-                res.status(500).send(responce)
-            } else {
-                data.responce = true;
-                data.responce = data;
-                res.status(200).send(responce)
-            }
-        })
-    }
-} catch (err) {
-    console.log("error in controller ")
-}
+//     module.exports.userMsg = (req, res) => {
+//         console.log(" value ")
+//         chatService.userMsg(req, (err, data) => {
+//             var responce = {};
+//             if (err) {
+//                 data.responce = false;
+//                 data.responce = err;
+//                 res.status(500).send(responce)
+//             } else {
+//                 data.responce = true;
+//                 data.responce = data;
+//                 res.status(200).send(responce)
+//             }
+//         })
+//     }
+// } catch (err) {
+//     console.log("error in controller ")
+// }

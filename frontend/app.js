@@ -57,7 +57,21 @@ app.config(function ($stateProvider,$urlRouterProvider) {
 
     });
 
-    $urlRouterProvider.otherwise('login');
-
+    /*
+    call Homepage html file and send to controller
+    */
+   $stateProvider.state('homePage', {
+    url: '/homePage',
+   templateUrl: 'templet/HomePage.html',
+   controller: 'chatController'
 
 });
+
+/*
+Default login
+*/
+    $urlRouterProvider.otherwise('login');
+
+});
+
+app.service('SocketService',)

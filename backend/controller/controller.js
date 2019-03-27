@@ -18,7 +18,6 @@ required files
 */
 var userService = require('../services/services');
 var jwt = require('jsonwebtoken');
-var gentoken = require('../middleware/token');
 var sendmail = require('../middleware/sendMail');
 /*
 signup function and provide some validations

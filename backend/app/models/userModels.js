@@ -19,7 +19,6 @@ required files
 
 const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var service = require('/home/admin1/Desktop/ChatApp/chatapp/backend/services/services')
 /*
 create instance of Schema
 */
@@ -32,7 +31,6 @@ var userSchema = new mongoSchema({
     "lastname": { type: String, required: [true, "LastName is required"] },
     "email": { type: String, required: [true, "Email is required"] },
     "password": { type: String, required: [true, "password is required"] },
-    "forgotPassToken": { type: String }
 }, {
         timestamps: true
     });
@@ -72,7 +70,13 @@ usermodel.prototype.signup = (body, callback) => {
         if email is not there then create a new account
         */
         else {
-            var newUser = service.save();
+            const newUser = new user({
+
+                "firstname": body.firstname,
+                "lastname": body.lastname,
+                "email": body.email,
+                "password": hash(body.password)
+            });
             /*
             then save the new data
             */

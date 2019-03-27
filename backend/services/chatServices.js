@@ -27,10 +27,10 @@ exports.addMessage = (req, callback) => {
     chatModel.addMessage(req, (err, data) => {
         if (err) {
             console.log("err on service file", err);
-            callback(err)
+           return callback(err)
         } else {
-            console.log("data on service file", data);
-            callback(null, data)
+            console.log("coming back to services => data on service file : ", data);
+          return callback(null, data)
         }
 
     })
@@ -39,9 +39,9 @@ exports.addMessage = (req, callback) => {
 /*
 for user message which has recived
 */
-exports.userMessage = (req, callback) => {
+exports.userMsg = (req, callback) => {
     console.log("user request")
-    chatModel.UserMsg(req, (err, data) => {
+    chatModel.userMsg(req, (err, data) => {
         if (err) {
             console.log("chat services is not working");
             callback(err);
