@@ -18,7 +18,6 @@ required files
 */
 app.service('serviceForgotPassword', function ($http, $location) {
 
-
     this.forgotPassword = function (data, $scope) {
         $http({
             method: 'POST',

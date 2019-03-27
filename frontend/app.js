@@ -16,8 +16,8 @@
 /*
 required files
 */
-var app=angular.module("chatapp",['ui.router'])
-app.config(function ($stateProvider,$urlRouterProvider) {
+var app = angular.module("chatapp", ['ui.router', 'btford.socket-io'])
+app.config(function ($stateProvider, $urlRouterProvider) {
 
     /*
     call login html file and send to controller
@@ -33,7 +33,7 @@ app.config(function ($stateProvider,$urlRouterProvider) {
     call signup html file and send to controller
     */
     $stateProvider.state('signup', {
-          url: '/signup',
+        url: '/signup',
         templateUrl: 'templet/SignUp.html',
         controller: 'controlSignup'
     })
@@ -42,7 +42,7 @@ app.config(function ($stateProvider,$urlRouterProvider) {
     call forgot password html file and send to controller
     */
     $stateProvider.state('forgotPassword', {
-         url: '/forgotPassword',
+        url: '/forgotPassword',
         templateUrl: 'templet/ForgotPassword.html',
         controller: 'controlForgotPassword'
 
@@ -51,7 +51,7 @@ app.config(function ($stateProvider,$urlRouterProvider) {
     call reset password html file and send to controller
     */
     $stateProvider.state('resetPassword', {
-         url: '/resetPassword/:token',
+        url: '/resetPassword/:token',
         templateUrl: 'templet/ResetPassword.html',
         controller: 'controlResetPassword'
 
@@ -60,18 +60,22 @@ app.config(function ($stateProvider,$urlRouterProvider) {
     /*
     call Homepage html file and send to controller
     */
-   $stateProvider.state('homePage', {
-    url: '/homePage',
-   templateUrl: 'templet/HomePage.html',
-   controller: 'chatController'
+    $stateProvider.state('homePage', {
+        url: '/homePage',
+        templateUrl: 'templet/HomePage.html',
+        controller: 'chatController'
 
-});
+    });
 
-/*
-Default login
-*/
+    /*
+    Default login
+    */
     $urlRouterProvider.otherwise('login');
 
 });
 
-app.service('SocketService',)
+app.service('SocketService', ['socketFactory', function SocketService(socketFactory) {
+    return socketFactory({
+        ioSocket: io.connect('http://localhost:4000')
+    });
+}]);
