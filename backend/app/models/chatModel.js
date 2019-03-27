@@ -27,7 +27,16 @@ var chatSchema = new schema({
         type: String
     },
 
+    "senderName": {
+        type: String
+    },
+
+
     "receiverId": {
+        type: String
+    },
+
+    "receiverName": {
         type: String
     },
 
@@ -53,7 +62,9 @@ try {
 
         const newMessage = new chat({
             "senderId": chatData.senderId,
+            "senderName":chatData.senderName,
             "receiverId": chatData.receiverId,
+            "receiverName":chatData.receiverName,
             "message": chatData.message
         });
         console.log("create a ID ", newMessage);

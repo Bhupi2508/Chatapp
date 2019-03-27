@@ -67,7 +67,7 @@ ioSocket.on('connection', function (socket) {
                 /*
                 emit is used to emit the message to all sockets connected to it.
                 */
-                ioSocket.emit('start a message ', message);
+                ioSocket.emit('startMessage', message);
             }
 
         })
