@@ -49,46 +49,77 @@ required files
     }
 
     h1 {
-        margin-left: 420px;
+        margin-left: 350px;
         font-size: 3em;
     }
 
     img {
-        height: 45px;
-        width: 52px;
+        height: 60px;
+        width: 100px;
         margin-left: 459px;
         margin-top: -50px;
-        margin-bottom: 30px;
+        margin-bottom: -16px;
         display: block;
     }
 
     button {
-        width: 200px;
-        height: 50px;
-        margin-left: auto;
+        width: 110px;
+        height: 36px;
+        margin-left: 677px;
         margin-right: auto;
         text-align: center;
         font-size: 20px;
-        border: none;
+        border: solid black;
         background-color: green;
         color: floralwhite;
         display: block;
+        margin-top: -33px;
     }
 
-    .tttt {
-        height: 430px;
+    .leftblock {
+        height: 445px;
         width: 387px;
         border: solid black;
     }
 
-    .yyyy {
-        margin-top: -538px;
+    .mainblock {
+        margin-top: -560px;
     }
 
     .root {
         margin-bottom: 90px;
     }
 
+    .rightblock {
+        height: 413px;
+        width: 784px;
+        border: solid black;
+        margin-left: 454px;
+        margin-bottom: -3px;
+    }
+
+    .send {
+        height: 30px;
+        width: 678px;
+        border: solid black;
+        margin-left: 454px;
+    }
+
+    input {
+        width: 678;
+        height: 30px;
+    }
+
+    .button {
+        width: 9%;
+        background: rgb(0, 0, 0);
+        border: none;
+        padding: 10px;
+    }
+
+    h2 {
+        margin-left: 135px;
+    }
 </style>
 
 <!--
@@ -103,12 +134,20 @@ required files
             <li><b><a href="#!/login">Logout</a></li>
         </ul>
     </div>
-    <div class="tttt">
+    <div class="leftblock">
+        <h2>Users List</h2>
     </div>
-    <div class="yyyy">
-        <div>
-            <h1>Welcome to ChatApp <img src="../assets/w.png"></h1>
 
+    <div class="mainblock">
+
+        <div>
+            <h1>Welcome to ChatApp <img src="../assets/img chatapp.png"></h1>
+            <div class="rightblock">
+            </div>
+            <div class="send">
+                <form action="">
+                    <input id="message" ng-model="message" autocomplete="off"><button ng-click="">Send</button></input>
+            </div>
         </div>
     </div>
 
@@ -116,5 +155,5 @@ required files
     <!-- <div>
         <button type="submit" onclick="location.href=''">START CHAT</button>
     </div> -->
-
+    </form>
 </body>
