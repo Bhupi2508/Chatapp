@@ -57,6 +57,8 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
                     if new message is there then push in array
                     */
                     $scope.allUserArr.push(message);
+                    console.log("allUserArr",allUserArr);
+                    
                 }
             }
         })
@@ -64,10 +66,10 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
     } catch (err) {
         console.log("!error, finding a message")
     }
-    $scope.getAllUsers = function () {
-        chatServices.getAllUsers($scope, token);
+    $scope.getAllUser = function () {
+        chatServices.getAllUser($scope, token);
     }
-    $scope.getAllUsers();
+    $scope.getAllUser();
     $scope.person = function (userData) {
         /*
         select person from list or Data
@@ -79,22 +81,22 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
          getting data from localstorage
         */
         $scope.recieverUserName = localStorage.getItem('rusername');
-        $scope.getUserMsg();
+        $scope.userMsg();
     }
     /*
     get all message from data
     */
-    $scope.getUserMsg = function () {
+    $scope.userMsg = function () {
         console.log("function calling....");
-        chatServices.getUserMsg($scope);
+        chatServices.userMsg($scope);
     }
-    $scope.getUserMsg();
+    $scope.userMsg();
 
     try {
         /*
         send message function
         */
-        $scope.sendmessage = function () {
+        $scope.addMessage = function () {
             var msg = {
                 'senderId': localStorage.getItem('userid'),
                 'senderName': localStorage.getItem('name'),

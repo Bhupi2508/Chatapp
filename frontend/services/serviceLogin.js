@@ -16,7 +16,7 @@
 /*
 required files
 */
-app.service('serviceLogin', function ($http, $location) {
+app.service('serviceLogin', function ($http, $state) {
 
 
     this.login = function (data, $scope) {
@@ -31,10 +31,12 @@ app.service('serviceLogin', function ($http, $location) {
                 var userid = response.data.message[0]._id;
                 var name = response.data.message[0].firstname;
                 var token = response.data.token;
+                var email = response.data.email;
                 localStorage.setItem("userid", userid);
                 localStorage.setItem("name", name);
                 localStorage.setItem("token",token);
-            
+                localStorage.setItem("email",email);
+             $state.go('homePage');
             },
             function errorCallback(response) {
 

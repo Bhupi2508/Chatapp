@@ -18,23 +18,26 @@ required files
 */
 app.service('chatServices', function ($http) {
     try {
-        this.getAllUsers = function ($scope, usertoken) {
+        this.getAllUser = function ($scope, usertoken) {
             $http({
                 /*
                 assigning value to http proprties
                 */
                 method: 'GET',
-                url: 'http://localhost:4000/auth/getAllUser',
+                url: 'http://localhost:4000/getAllUser',
                 headers: {
                     'token': usertoken,
                 }
             }).then(
+
                 /*
                 call back function of http sevice
                 */
                 function successCallback(response) {
                     $scope.allUser = response.data.result;
                     console.log("all data : ", response.data.result);
+                    console.log("response: ",response);
+                    
                 },
                 function errorCallback(response) {
                     console.log(" register Unsuccessfull ");
@@ -59,7 +62,7 @@ app.service('chatServices', function ($http) {
                 assigning value to http proprties
                 */
                 method: 'GET',
-                url: 'http://localhost:4000/auth/userMsg',
+                url: 'http://localhost:4000/userMsg',
                 headers: {
                     'token': usertoken,
                 }

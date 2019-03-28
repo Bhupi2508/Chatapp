@@ -16,15 +16,14 @@
 /*
 required files
 */
-const http = require('http');
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const route = require('../backend/routes/route');
-var socket = require('socket.io');
-const ioSocket = require('socket.io')(server);
+const server = require('http').createServer(app)
+const ioSocket = require('socket.io').listen(server);
 var controllerChat = require('./controller/chatController')
 require('dotenv').config();
 app.use(cors());
@@ -45,29 +44,31 @@ app.use(expressValidator());
 /*
 server is listen 4000 port 
 */
-var server = app.listen(4000, () => {
+server.listen(4000, () => {
     console.log("Server is listening to port 4000");
 })
 
 /*
 connect server and client uses by socket.io
 */
-ioSocket.on('connection', function (socket) {
-    console.log("Socket is connected")
+connections=[];
+ioSocket.sockets.on('connection', function (socket) {
+    connections.push(socket);
+    console.log("connected: %s sockets connected",connections.length);
     /*
     event is connected and listen, and socket.on wait for callback to called the function
     */
-    socket.on('new message', function (message) {
-        controllerChat.message(message, (err, data) => {
+    socket.on('createMessage', function (message) {
+        controllerChat.addMessage(message, (err, data) => {
             if (err) {
                 console.log("Error on message");
                 console.log(err);
             } else {
-                console.log(message + "show in server");
+                console.log(data + "show in server");
                 /*
                 emit is used to emit the message to all sockets connected to it.
                 */
-                ioSocket.emit('startMessage', message);
+                ioSocket.sockets.emit('startMessage', data);
             }
 
         })

@@ -85,18 +85,26 @@ try {
 /*
 user message 
 */
-try {
-    chatModel.prototype.userMsg = (callback) => {
-        chat.find({}, (err, data) => {
-            if (err) {
-                callback(err)
-            } else {
-                callback(null, data);
-            }
-        })
-    }
-} catch (err) {
-    console.log('Data not find')
+// try {
+//     chatModel.prototype.userMsg = (callback) => {
+//         chat.find({}, (err, data) => {
+//             if (err) {
+//                 callback(err)
+//             } else {
+//                return callback(null, data);
+//             }
+//         })
+//     }
+// } catch (err) {
+//     console.log('Data not find')
+// }
+chatModel.prototype.userMsg = (req, callback) => {
+    chat.find({}, (err, data) => {
+        if (err) {
+            callback("error is in model" + err)
+        } else {
+            callback(null, data);
+        }
+    })
 }
-
 module.exports = new chatModel();

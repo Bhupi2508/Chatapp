@@ -16,15 +16,15 @@
 <!--
 required files
  -->
-<script src="../angular.js"></script>
+<!-- <script src="../angular.js"></script>
 <script src="../angular-route.min.js"></script>
 <script src="../app.js"></script>
 <script src="../controller/chatController.js"></script>
-<script src="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"></script>
+<script src="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"></script> -->
 
 <!--
             css part
-        -->
+            -->
 <title>Home Page</title>
 <style>
     ul {
@@ -56,7 +56,8 @@ required files
     }
 
     h2 {
-        margin-left: 135px;
+        margin-left: -2px;
+        margin-top: -26px;
     }
 
     input {
@@ -115,12 +116,57 @@ required files
         padding: 10px;
     }
 
+    .chatMsg {
+        width: 760px;
+        height: 23px;
+        padding: 10px;
+        margin: 0px, 0px, 0px;
+        font-size: 20px;
+        font-family: "source sans pro", Helvetica, sans-serif;
+        margin-top: 56px;
+    }
+
+    .chatfriend {
+        font-family: "source sans pro", Helvetica, sans-serif;
+        background: rgb(232, 240, 186) 100%;
+        color: black;
+        text-align: left;
+    }
+
+    .chatself {
+        color: rgb(14, 10, 10);
+        font-family: "source sans pro", Helvetica, sans-serif;
+        text-align: right;
+        background: lightgreen;
+        margin-right: 0px;
+        margin-top: 63px;
+    }
+
     .rightblock {
         height: 413px;
         width: 784px;
         border: solid black;
         margin-left: 454px;
         margin-bottom: -3px;
+    }
+
+    nav {
+        float: left;
+        background-color: white;
+        border-radius: 3%;
+        width: 79%;
+        height: 364px;
+        padding: 40px;
+        text-align: left;
+        cursor: pointer;
+        overflow-y: scroll;
+        overflow-x: scroll;
+        font-family: "source sans pro", Helvetica, sans-serif;
+        font-weight: 300;
+
+        font-weight: bold;
+        color: black;
+        text-align: center
     }
 </style>
 
@@ -129,20 +175,31 @@ required files
 -->
 
 <body ng-controller="chatController">
+
+    <div class="topnav" id="myTopnav">
+        <a class="heading">Welcome {{currUserName}}</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
     <div class="root">
-        <ul>
-            <li><b><a href="HomePage.html">Home</a></li>
-            <!-- <li><b><a href="Profile.html">Profile</a></li> -->
-            <li><b><a href="#!/login" ng-click=go()>Logout</a></li>
-        </ul>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <ul>
+                <li><b><a href="#!/homePage">Home</a></li>
+                <!-- <li><b><a href="Profile.html">Profile</a></li> -->
+                <li><b><a href="#!/login" ng-click=go()>Logout</a></li>
+
+            </ul>
     </div>
     <div class="leftblock">
-        <section>
-            <h2>Users List</h2>
-            <p ng-repeat="x in allUser" ng-click="person(x)" ng-show="currUserName!=x.firstname">
+        <nav>
+            <section>
+                <h2>Users List</h2>
+                <p ng-repeat="x in allUser" ng-click="person(x)" ng-show="currUserName!=x.firstname">
                     {{x.firstname}}</p>
-                    <a class="">{{getAllUsers}}</a>
-        </section>
+            </section>
+        </nav>
     </div>
 
     <div class="mainblock">
@@ -153,11 +210,10 @@ required files
                 <section>
                     <form>
                         <div class="chatLogs" ng-repeat="chat in allUserArr">
-                            <div class="chat friend" ng-show="currUser != chat.senderUserId">
+                            <div class="chatfriend" ng-show="currUser != chat.senderId">
                                 <p class="chatMsg"> {{chat.message}}</p>
                             </div>
-                            <div class="chat self" ng-show="currUser == chat.senderUserId">
-
+                            <div class="chatself" ng-show="currUser == chat.senderId">
                                 <p class="chatMsg"> {{chat.message}}</p>
                             </div>
                         </div>
@@ -166,15 +222,11 @@ required files
             <div class="send">
                 <form action="">
                     <input id="message" ng-model="message" autocomplete="off">
-                    <button ng-click=sendmessage()>Send</button>
+                    <button type="submit" ng-click=sendmessage()>Send</button>
                     </input>
             </div>
         </div>
     </div>
 
-
-    <!-- <div>
-        <button type="submit" onclick="location.href=''">START CHAT</button>
-    </div> -->
     </form>
 </body>
