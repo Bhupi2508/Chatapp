@@ -27,7 +27,7 @@ router.post('/forgotPassword',user.forgotPassword);
 router.post('/resetPassword',verify.auth,user.resetPassword);
 router.post('/addMessage',chatUser.addMessage)
 router.get('/getAllUser',verify.auth,user.getAllUser);
-router.get('/userMsg',verify.auth,chatUser.userMsg);
+router.get('/userMsg',chatUser.userMsg);
 
 
 module.exports = router;

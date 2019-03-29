@@ -68,16 +68,21 @@ app.service('chatServices', function ($http) {
                 }
             }).then(
                 function successCallback(response) {
-                    console.log(response.data.message);
+                    console.log("response : ",response);
+                    console.log("response data message",response.data.message);
+                    console.log("response data",response.data);
+                    console.log("message",message);
+                    console.log("response data result",response.data.result);
+                    console.log("response data result",response.data.result.length);
 
-                    for (let i = 0; i < (response.data.message); i++) {  //(response.data.message).length *change was done
-                        a = response.data.message[i];
+                    for (let i = 0; i < (response.data.result.length); i++) { 
+                       var a = response.data.result[i];
 
-                        if (((localStorage.getItem('userid') == a.senderId) && (localStorage.getItem('ruserId') == a.recieverId)) || ((localStorage.getItem('userid') == a.recieverId && localStorage.getItem('ruserId') == a.senderId))) {
+                        if (((localStorage.getItem('userid') == a.senderId) && (localStorage.getItem('ruserId') == a.receiverId)) || ((localStorage.getItem('userid') == a.receiverId && localStorage.getItem('ruserId') == a.senderId))) {
                             /*
                             print in full code
                             */
-                            console.log("local user is ", localStorage.getItem('userid'), "a user is ", a.senderId, " local rcvrid is ", localStorage.getItem('ruserId'), "  reciver is ", a.recieverId);
+                            console.log("local user is ", localStorage.getItem('userid'), "a user is ", a.senderId, " local rcvrid is ", localStorage.getItem('ruserId'), "  reciver is ", a.receiverId);
 
                             /*
                             pushing all message to array

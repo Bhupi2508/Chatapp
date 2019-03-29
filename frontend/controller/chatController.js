@@ -26,8 +26,8 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
     $scope.allUserArr = [];
     $scope.currUserName = localStorage.getItem('name');
     $scope.currUser = localStorage.getItem('userid');
-    $scope.recieverName = localStorage.getItem('rusername');
-    $scope.recieverId = localStorage.getItem('ruserId');
+    $scope.receiverName = localStorage.getItem('rusername');
+    $scope.receiverId = localStorage.getItem('ruserId');
 
     /*
     get a token from data
@@ -46,7 +46,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
             /*
             events listening
             */
-            if (localStorage.getItem('userid') == message.senderId || (localStorage.getItem('userid') == message.recieverId && localStorage.getItem('ruserId') == message.senderId)) {
+            if (localStorage.getItem('userid') == message.senderId || (localStorage.getItem('userid') == message.receiverId && localStorage.getItem('ruserId') == message.senderId)) {
                 if ($scope.allUserArr === undefined) {
                     /*
                     assighning message to variable
@@ -57,7 +57,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
                     if new message is there then push in array
                     */
                     $scope.allUserArr.push(message);
-                    console.log("allUserArr",allUserArr);
+                    console.log("allUserArr",$scope.allUserArr);
                     
                 }
             }
@@ -80,7 +80,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
         /*
          getting data from localstorage
         */
-        $scope.recieverUserName = localStorage.getItem('rusername');
+        $scope.receiverUserName = localStorage.getItem('rusername');
         $scope.userMsg();
     }
     /*
@@ -100,8 +100,8 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
             var msg = {
                 'senderId': localStorage.getItem('userid'),
                 'senderName': localStorage.getItem('name'),
-                'recieverId': localStorage.getItem('ruserId'),
-                'recieverName': localStorage.getItem('rusername'),
+                'receiverId': localStorage.getItem('ruserId'),
+                'receiverName': localStorage.getItem('rusername'),
                 'message': $scope.message
             };
             $scope.message = '';
@@ -112,7 +112,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
         }
     }
     catch (err) {
-        console.log("!error in sending message to the reciever")
+        console.log("!error in sending message to the receiver")
     }
 
     try {

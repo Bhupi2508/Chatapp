@@ -21,42 +21,27 @@ var chatService = require('../services/chatServices');
 /*
 check the req and send to callback again
 */
-try {
-    module.exports.addMessage = (req, res) => {
+    module.exports.addMessage = (req, callback) => {
         /*
         add messages 
         */
         chatService.addMessage(req, (err, data) => {
-            var responce = {};
+            
             if (err) {
-                responce.status = false;
-                responce.error = err;
-                res.status(500).send(responce)
+                console.log("error in controller");
+                return callback(err);
             } else {
-                responce.status = true;
-                responce.result = data;
-               return res.status(200).send({
-                  "data :" : responce,
-                  "messge " : data.addMessage,
-                })
+                console.log("come back to controller => controller is working fine");
+                return callback(null, data);
             }
-            // if (err) {
-            //     console.log("error in controller");
-            //     return callback(err);
-            // } else {
-            //     console.log("come back to controller => controller is working fine");
-            //     return callback(null, data);
-            // }
         })
     }
-} catch (err) {
-    console.log('error in sending messge')
-}
 
-try {
-
+/*
+get all the messages from data
+*/
     module.exports.userMsg = (req, res) => {
-        console.log(" value ")
+        console.log("user message value ")
         chatService.userMsg(req, (err, data) => {
             var responce = {};
             if (err) {
@@ -66,10 +51,7 @@ try {
             } else {
                 responce.status = true;
                 responce.result = data;
-               return res.status(200).send(responce)
+                res.status(200).send(responce)
             }
         })
     }
-} catch (err) {
-    console.log("error in controller ")
-}
