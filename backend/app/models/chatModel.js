@@ -50,16 +50,17 @@ var chatSchema = new schema({
     });
 
 /*
-create a chatModel function
+create a chatModel function and schema
 */
 function chatModel() { }
 var chat = mongoose.model('chatInfo', chatSchema)
 try {
     chatModel.prototype.addMessage = (chatData, callback) => {
         console.log('In model => Data : ', chatData.senderId)
-       // console.log("chatdata : ", chatData);
-        
-
+    
+        /*
+        send message obj to the services
+        */
         const newMessage = new chat({
             "senderId": chatData.senderId,
             "senderName":chatData.senderName,
@@ -83,21 +84,8 @@ try {
 }
 
 /*
-user message 
+user message take input form service and send response to services
 */
-// try {
-//     chatModel.prototype.userMsg = (callback) => {
-//         chat.find({}, (err, data) => {
-//             if (err) {
-//                 callback(err)
-//             } else {
-//                return callback(null, data);
-//             }
-//         })
-//     }
-// } catch (err) {
-//     console.log('Data not find')
-// }
 chatModel.prototype.userMsg = (req, callback) => {
     chat.find({}, (err, data) => {
         if (err) {

@@ -112,7 +112,7 @@ usermodel.prototype.login = (body, callback) => {
                     return callback(err);
                 }
                 /*
-                    if email and password are matching then login succeccfully
+                  if email and password are matching then login succeccfully
                 */
                 else if (res) {
                     console.log(data);
@@ -136,7 +136,9 @@ usermodel.prototype.login = (body, callback) => {
 create a forgot password function for forgot password
 */
 usermodel.prototype.forgotPassword = (body, callback) => {
-
+    /*
+    find email form the data
+    */
     user.find({ "email": body.email }, (err, data) => {
         if (err) {
             return callback(err);
@@ -153,15 +155,16 @@ usermodel.prototype.forgotPassword = (body, callback) => {
 /*
 create a reset password function for reset Password
 */
-
 usermodel.prototype.resetPassword = (req, callback) => {
     console.log(' in model--data:--', req.decoded);
     console.log(' in model--body:--', req.body);
     let newpassword = bcrypt.hashSync(req.body.password, salt);
     console.log('new pass bcrypt--', newpassword);
-    
-    
-    user.updateOne({email : req.email }, { password: newpassword }, (err, result) => {
+
+    /*
+    update the data from database
+    */
+    user.updateOne({ email: req.email }, { password: newpassword }, (err, result) => {
         if (err) {
             callback(err);
         }
@@ -170,11 +173,11 @@ usermodel.prototype.resetPassword = (req, callback) => {
             callback(null, result);
         }
     });
- }
+}
 
 
 /*
-getAllUser function for all the data
+getAllUser function for take all the data from DataBase
 */
 usermodel.prototype.getAllUser = (req, callback) => {
     user.find({}, (err, data) => {

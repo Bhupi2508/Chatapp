@@ -27,6 +27,9 @@ try {
         var response = {
             'message': "Unauthorised user here "
         };
+        /*
+        verify the token and then send response to sendMail
+        */
         jwt.verify(token, secret, function (err, decoded) {
             if (err) {
                 console.log(err)

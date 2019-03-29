@@ -24,23 +24,29 @@ send message or add message by sender
 */
 exports.addMessage = (req, callback) => {
     console.log("Service request")
+    /*
+   send data to model and callback from there
+   */
     chatModel.addMessage(req, (err, data) => {
         if (err) {
             console.log("err on service file", err);
-           return callback(err)
+            return callback(err)
         } else {
             console.log("coming back to services => data on service file : ", data);
-          return callback(null, data)
+            return callback(null, data)
         }
 
     })
 }
 
 /*
-for user message which has recived
+get user message from the data base and to the frontend
 */
 exports.userMsg = (req, callback) => {
     console.log("user request")
+    /*
+    send data to model and callback from there
+    */
     chatModel.userMsg(req, (err, data) => {
         if (err) {
             console.log("chat services is not working");

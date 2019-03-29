@@ -39,6 +39,9 @@ module.exports.signup = (req, res) => {
         response.error = errors;
         return res.status(422).send(response);
     } else {
+        /*
+         send the req to the services and then callback
+        */
         userService.signup(req.body, (err, data) => {
             if (err) {
                 console.log(err);
@@ -73,12 +76,18 @@ module.exports.login = (req, res) => {
         response.error = errors;
         return res.status(422).send(response);
     } else {
+        /*
+         send the req to the services and then callback
+        */
         userService.login(req.body, (err, data) => {
             if (err) {
                 return res.status(500).send({
                     message: err
                 });
             } else {
+                /*
+                create a token for user_id and send to snedMail and then callback
+                */
                 var token = jwt.sign({ email: req.body.email, id: data[0]._id }, secret, { expiresIn: 86400000 });
                 return res.status(200).send({
                     message: data,
@@ -94,7 +103,6 @@ module.exports.login = (req, res) => {
 forgotPassword function check function if no error then provide to services
 */
 module.exports.forgotPassword = (req, res) => {
-
     req.checkBody('email', 'Email is not valid').isEmail();
     var secret = "adcgfft";
     var errors = req.validationErrors();
@@ -107,6 +115,9 @@ module.exports.forgotPassword = (req, res) => {
         response.error = errors;
         return res.status(422).send(response);
     } else {
+        /*
+         send the req to the services and then callback
+        */
         userService.forgotPassword(req.body, (err, data) => {
             var responses = {};
 
@@ -118,10 +129,9 @@ module.exports.forgotPassword = (req, res) => {
                 console.log(req.body);
                 responses.success = true;
                 responses.result = data;
-
                 console.log("data in controller ======== >", data[0]._id);
                 /*
-                create a token for user_id
+                create a token for user_id and send to snedMail and then callback
                 */
                 var token = jwt.sign({ _id: data[0]._id }, secret, { expiresIn: 86400000 });
                 const url = `http://localhost:4000/#!/resetPassword/${token}`;
@@ -146,6 +156,9 @@ resetPassword function check function if no error then provide to services
 */
 exports.resetPassword = (req, res) => {
     var responseResult = {};
+    /*
+   send the req to the services and then callback
+   */
     userService.resetPassword(req, (err, result) => {
         if (err) {
             responseResult.success = false;
@@ -167,13 +180,15 @@ exports.resetPassword = (req, res) => {
 getAllUser function check function if no error then provide to services
 */
 exports.getAllUser = (req, res) => {
+    /*
+    send the req to the services and then callback
+    */
     userService.getAllUser(req, (err, data) => {
         var response = {};
         if (err) {
             console.log("error");
             return callback(err);
         } else {
-            //  console.log("log==>",data);
             response.success = true;
             response.result = data;
             res.status(200).send(response);
