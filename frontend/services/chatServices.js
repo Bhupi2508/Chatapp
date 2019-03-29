@@ -21,7 +21,7 @@ app.service('chatServices', function ($http) {
         this.getAllUser = function ($scope, usertoken) {
             $http({
                 /*
-                assigning value to http proprties
+                get value from the data and by using GET method
                 */
                 method: 'GET',
                 url: 'http://localhost:4000/getAllUser',
@@ -36,8 +36,8 @@ app.service('chatServices', function ($http) {
                 function successCallback(response) {
                     $scope.allUser = response.data.result;
                     console.log("all data : ", response.data.result);
-                    console.log("response: ",response);
-                    
+                    console.log("response: ", response);
+
                 },
                 function errorCallback(response) {
                     console.log(" register Unsuccessfull ");
@@ -55,11 +55,15 @@ app.service('chatServices', function ($http) {
     */
     try {
         this.userMsg = function ($scope) {
+
+            /*
+            create a array and push all the message in this array
+            */
             var arr = [];
             var usertoken = localStorage.getItem('token');
             $http({
                 /*
-                assigning value to http proprties
+                assigning value to http proprties from the data
                 */
                 method: 'GET',
                 url: 'http://localhost:4000/userMsg',
@@ -67,18 +71,28 @@ app.service('chatServices', function ($http) {
                     'token': usertoken,
                 }
             }).then(
+                /*
+                get response from the database
+                */
                 function successCallback(response) {
-                    console.log("response : ",response);
-                    console.log("response data message",response.data.message);
-                    console.log("response data",response.data);
-                    console.log("message",message);
-                    console.log("response data result",response.data.result);
-                    console.log("response data result",response.data.result.length);
+                    console.log("response : ", response);
+                    console.log("response data message", response.data.message);
+                    console.log("response data", response.data);
+                    console.log("message", message);
+                    console.log("response data result", response.data.result);
+                    console.log("response data result", response.data.result.length);
 
-                    for (let i = 0; i < (response.data.result.length); i++) { 
-                       var a = response.data.result[i];
+                    /*
+                    create a loop for all the message history
+                    */
+                    for (let i = 0; i < (response.data.result.length); i++) {
+                        var a = response.data.result[i];
 
+                        /*
+                        condition for correct user history and send them
+                        */
                         if (((localStorage.getItem('userid') == a.senderId) && (localStorage.getItem('ruserId') == a.receiverId)) || ((localStorage.getItem('userid') == a.receiverId && localStorage.getItem('ruserId') == a.senderId))) {
+
                             /*
                             print in full code
                             */
@@ -91,6 +105,9 @@ app.service('chatServices', function ($http) {
                         }
 
                     }
+                    /*
+                    now all the messages store in users history
+                    */
                     $scope.allUserArr = arr;
                     console.log("Users msg successfull ", arr);
 

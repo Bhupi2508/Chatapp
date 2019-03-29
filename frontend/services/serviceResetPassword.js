@@ -20,7 +20,10 @@ app.service('serviceResetPassword', function ($http, $location) {
 
     this.resetPasswordUser = function (data, $scope) {
         console.log("data on service register--- ", data);
-        
+
+        /*
+        send the data and get response
+        */
         $http({
             method: 'POST',
             url: 'http://localhost:4000/resetPassword',
@@ -31,14 +34,16 @@ app.service('serviceResetPassword', function ($http, $location) {
                 console.log("register successfull ");
                 console.log(response);
                 $scope.message = "register successfull";
+
+                /*
+                after reset password come into the login page
+                */
                 $location.path('/login');
 
             },
             function errorCallback(response) {
-
                 console.log("register Unsuccessfull ");
-             $scope.message =response.data.message.message;
-
+                $scope.message = response.data.message.message;
 
             }
         );

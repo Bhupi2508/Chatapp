@@ -21,7 +21,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
     $scope.message = "";
     /*
     create a array for all users,
-    current user name, id and receiver user name get from storage
+    current user name, id and receiveruser name get from the localstorage
     */
     $scope.allUserArr = [];
     $scope.currUserName = localStorage.getItem('name');
@@ -44,7 +44,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
     try {
         SocketService.on('startMessage', (message) => {
             /*
-            events listening
+            events listening message
             */
             if (localStorage.getItem('userid') == message.senderId || (localStorage.getItem('userid') == message.receiverId && localStorage.getItem('ruserId') == message.senderId)) {
                 if ($scope.allUserArr === undefined) {
@@ -66,23 +66,32 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
     } catch (err) {
         console.log("!error, finding a message")
     }
+    /*
+    getAllUser has userList from the DataBase
+    */
     $scope.getAllUser = function () {
         chatServices.getAllUser($scope, token);
     }
     $scope.getAllUser();
+
+    /*
+    person function has userData
+    */
     $scope.person = function (userData) {
         /*
-        select person from list or Data
+        select receiver person from list or Data
         */
         $scope.allUserArr = '';
         localStorage.setItem('rusername', userData.firstname);
         localStorage.setItem('ruserId', userData._id);
+
         /*
          getting data from localstorage
         */
         $scope.receiverUserName = localStorage.getItem('rusername');
         $scope.userMsg();
     }
+
     /*
     get all message from data
     */
@@ -94,7 +103,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
 
     try {
         /*
-        send message function
+        send message 
         */
         $scope.addMessage = function () {
             var msg = {
@@ -106,7 +115,7 @@ app.controller('chatController', function ($scope, SocketService, $state, chatSe
             };
             $scope.message = '';
             /*
-            emittin the message to the browser
+            emit the message to the browser
             */
             SocketService.emit('createMessage', msg);
         }

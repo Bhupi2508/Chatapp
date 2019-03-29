@@ -22,9 +22,7 @@ app.controller('controlForgotPassword', function ($scope, serviceForgotPassword)
         var data = {
             'email': $scope.email,    
         }
-        $scope.go = function(path) {
-          //  $location.path("/login");
-          };
+        $scope.go = function(path) {};
         serviceForgotPassword.forgotPassword(data, $scope);
     }
 });

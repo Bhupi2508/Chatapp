@@ -74,6 +74,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
+/*
+connect to the server by the use of socket
+*/
 app.service('SocketService', ['socketFactory', function SocketService(socketFactory) {
     return socketFactory({
         ioSocket: io.connect('http://localhost:4000')

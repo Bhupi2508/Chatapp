@@ -19,6 +19,9 @@ required files
 app.service('serviceForgotPassword', function ($http, $location) {
 
     this.forgotPassword = function (data, $scope) {
+        /*
+        send the data and get response
+        */
         $http({
             method: 'POST',
             url: 'http://localhost:4000/forgotPassword',
@@ -31,16 +34,17 @@ app.service('serviceForgotPassword', function ($http, $location) {
                 var token = response.data.token;
                 localStorage.setItem("userid", userid);
                 localStorage.setItem("name", name);
-                localStorage.setItem("token",token);
-               
+                localStorage.setItem("token", token);
+
+                /*
+                message after login successfull
+                */
                 $scope.loginMessage = "login successfull";
             },
             function errorCallback(response) {
-
                 console.log("register Unsuccessfull ");
                 console.log(response);
                 $scope.loginMessage = 'EmailId Incorrect ';
-
 
             }
         );

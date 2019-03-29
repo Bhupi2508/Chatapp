@@ -20,6 +20,9 @@ app.service('serviceLogin', function ($http, $state) {
 
 
     this.login = function (data, $scope) {
+        /*
+        send the data and get response
+        */
         $http({
             method: 'POST',
             url: 'http://localhost:4000/login',
@@ -34,12 +37,15 @@ app.service('serviceLogin', function ($http, $state) {
                 var email = response.data.email;
                 localStorage.setItem("userid", userid);
                 localStorage.setItem("name", name);
-                localStorage.setItem("token",token);
-                localStorage.setItem("email",email);
-             $state.go('homePage');
+                localStorage.setItem("token", token);
+                localStorage.setItem("email", email);
+
+                /*
+                after login successfull go to direct homePage
+                */
+                $state.go('homePage');
             },
             function errorCallback(response) {
-
                 console.log("register Unsuccessfull please check your username or password");
                 console.log(response);
                 $scope.loginMessage = 'EmailId or Password Incorrect ';

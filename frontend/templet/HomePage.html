@@ -241,17 +241,17 @@ required files
                     </div>
                     <section>
                         <form>
-                        <nav class="navv">
-                            <div class="chatLogs" ng-repeat="chat in allUserArr">
-                                <div class="chatfriend" ng-show="currUser != chat.senderId">
-                                    <p class="chatMsg"> {{chat.message}}</p>
+                            <nav class="navv">
+                                <div class="chatLogs" ng-repeat="chat in allUserArr">
+                                    <div class="chatfriend" ng-show="currUser != chat.senderId">
+                                        <p class="chatMsg"> {{chat.message}}</p>
+                                    </div>
+                                    <div class="chatself" ng-show="currUser == chat.senderId">
+                                        <p class="chatMsg"> {{chat.message}}</p>
+                                    </div>
                                 </div>
-                                <div class="chatself" ng-show="currUser == chat.senderId">
-                                    <p class="chatMsg"> {{chat.message}}</p>
-                                </div>
-                            </div>
-                        </nav>
-                    </form>
+                            </nav>
+                        </form>
                     </section>
                 </div>
                 <div class="send">
