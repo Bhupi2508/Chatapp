@@ -25,6 +25,7 @@ const route = require('../backend/routes/route');
 const server = require('http').createServer(app)
 const ioSocket = require('socket.io').listen(server);
 var controllerChat = require('./controller/chatController')
+var expressValidator = require('express-validator')
 require('dotenv').config();
 app.use(cors());
 
@@ -38,7 +39,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 Parses the text as JSON and exposes the resulting object on req.body.
 */
 app.use(bodyParser.json());
-var expressValidator = require('express-validator')
 app.use(expressValidator());
 
 /*
