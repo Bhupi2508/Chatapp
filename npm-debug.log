@@ -4,7 +4,7 @@
 3 info using node@v8.10.0
 4 verbose stack Error: ENOENT: no such file or directory, open '/home/admin1/Desktop/ChatApp/chatapp/package.json'
 5 verbose cwd /home/admin1/Desktop/ChatApp/chatapp
-6 error Linux 4.15.0-46-generic
+6 error Linux 4.15.0-47-generic
 7 error argv "/usr/bin/node" "/usr/bin/npm" "run" "dev"
 8 error node v8.10.0
 9 error npm  v3.5.2

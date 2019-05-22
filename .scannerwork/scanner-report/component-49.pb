@@ -1,0 +1,1 @@
+1*frontend/services/serviceForgotPassword.js 2jsX6h
